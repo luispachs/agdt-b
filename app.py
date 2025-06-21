@@ -1,5 +1,5 @@
 from flask import Flask,jsonify
-from src.routes.auth import register
+from src.routes.auth import register,login,logout,authorize
 from src.routes.Plan import getPlanes
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -22,6 +22,9 @@ def main():
 
 app.add_url_rule(apiPrefix+"auth/register",view_func=register,methods=['POST'])
 app.add_url_rule(apiPrefix+"plan",view_func=getPlanes,methods=['GET'])
+app.add_url_rule(apiPrefix+"auth/login",view_func=login,methods=['POST'])
+app.add_url_rule(apiPrefix+"auth/logout",view_func= logout, methods=['POST'])
+app.add_url_rule(apiPrefix+"auth/authorize",view_func=authorize,methods=['POST'])
 
 if __name__ == '__main__':
     app.run()

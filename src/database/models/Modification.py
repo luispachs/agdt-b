@@ -8,7 +8,7 @@ from typing import Optional
 from sqlalchemy import ForeignKey
 
 class Modification(Base):
-    __tablename__ =  'modification'
+    __tablename__ =  'modifications'
     id:Mapped[int] = mapped_column('id',primary_key=True)
     name:Mapped[str] = mapped_column('name',nullable=False,unique=True)
     price:Mapped[float] = mapped_column('price',nullable=False,default=0.0)

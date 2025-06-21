@@ -45,3 +45,14 @@ def register():
         print(ex)
         return {'data':{'error':'Something Was Wrong - 500'}},500
 
+
+def login():
+
+    return {'data':None} ,401
+
+
+def logout():
+    return {'data':None}
+
+def authorize():
+    return {'data':None}

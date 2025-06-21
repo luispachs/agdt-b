@@ -8,6 +8,7 @@ from sqlalchemy.orm import mapped_column
 from typing import List
 from typing import Optional
 from sqlalchemy import ForeignKey
+from datetime import datetime
 class Business(Base):
     __tablename__ = 'business'
     id:Mapped[int] =mapped_column('id',primary_key=True)
@@ -15,7 +16,8 @@ class Business(Base):
     businessAddress:Mapped[str] = mapped_column('business_address',nullable=False,unique=True)
     businessPhone:Mapped[str] = mapped_column('business_phone',unique=True,nullable=False)
     user_id:Mapped[int] = mapped_column('owner_id',ForeignKey('users.id'))
-
+    paymentFrecuency:Mapped[str] = mapped_column('payment_frequency',nullable=True)
+    startService:Mapped[datetime] = mapped_column('start_service',nullable=True)
     ownerId:Mapped['User'] = relationship('User',back_populates='business')
 
     modifications:Mapped[List['Modification']] = relationship(back_populates='businessId')
