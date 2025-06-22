@@ -1,5 +1,5 @@
 from sqlalchemy.dialects.postgresql import insert
-
+from sqlalchemy import select
 from src.Repository.Repository import Repository
 from src.database.models.User import User
 
@@ -9,6 +9,13 @@ class UserRepository(Repository):
         result = self.conn.execute(stmt)
         data = result.inserted_primary_key
         return data
+
+    def getByEmail(self,email:str):
+        session = Repository().getSession()
+        stmt = select(User).filter_by(email = email)
+        user = session.execute(stmt).one()
+        print(user)
+        return user
 
 
 

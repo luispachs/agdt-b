@@ -11,7 +11,7 @@ class IntValidator(ValidatorInterface):
         self.max = max
 
     def validate(self,data:any):
-        if type(data) != int.__class__:
+        if type(data) is not int:
             raise ValidatorException(f'Property type must be "INT" got {type(data)}').with_traceback(sys.exception().__traceback__)
         if data is None:
             raise ValidatorException(f'Data cannot be null')

@@ -10,7 +10,11 @@ os.environ['AGENDATE_DIR']= os.getcwd()
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app=app,resources="/api/v1/*",methods=['POST','GET','DELETE','PATH'],supports_credentials=True)
+CORS(app=app,resources={ "/api/v1/*": {
+    'Access-Control-Allow-Origin':'*',
+    'Access-Control-Allow-Methods': '*',
+    'Access-Control-Allow-Headers': 'Content-type,Application-Content'
+    }},methods=['POST','GET','DELETE','PATH'],supports_credentials=True)
 apiPrefix = '/api/v1/'
 
 

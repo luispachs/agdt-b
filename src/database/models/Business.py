@@ -17,7 +17,7 @@ class Business(Base):
     businessPhone:Mapped[str] = mapped_column('business_phone',unique=True,nullable=False)
     user_id:Mapped[int] = mapped_column('owner_id',ForeignKey('users.id'))
     paymentFrecuency:Mapped[str] = mapped_column('payment_frequency',nullable=True)
-    startService:Mapped[datetime] = mapped_column('start_service',nullable=True)
+    startService:Mapped[datetime] = mapped_column('start_services',nullable=True)
     ownerId:Mapped['User'] = relationship('User',back_populates='business')
 
     modifications:Mapped[List['Modification']] = relationship(back_populates='businessId')
