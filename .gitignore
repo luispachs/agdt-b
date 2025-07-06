@@ -1,2 +1,4 @@
 .env
 .venv
+private_agendate.pem
+public_agendate.pem
