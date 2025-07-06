@@ -12,10 +12,9 @@ class UserRepository(Repository):
 
     def getByEmail(self,email:str):
         session = Repository().getSession()
-        stmt = select(User).filter_by(email = email)
-        user = session.execute(stmt).one()
-        print(user)
-        return user
+        stmt = select(User).where(User.email == email)
+        user = session.execute(stmt)
+        return user.scalars().one()
 
 
 

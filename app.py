@@ -30,5 +30,10 @@ app.add_url_rule(apiPrefix+"auth/login",view_func=login,methods=['POST'])
 app.add_url_rule(apiPrefix+"auth/logout",view_func= logout, methods=['POST'])
 app.add_url_rule(apiPrefix+"auth/authorize",view_func=authorize,methods=['POST'])
 
+# Secure Routes, this need to authentication Bearer
+# Use auth.authorize function to validate
+
+
+
 if __name__ == '__main__':
     app.run()

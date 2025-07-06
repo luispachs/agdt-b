@@ -1,4 +1,4 @@
-from flask import request,jsonify,redirect
+from flask import request
 from src.Messages.Messages import Messages
 from src.Repository.Repository import Repository
 from src.Repository.UserRepository import UserRepository
@@ -11,7 +11,13 @@ from src.Security.Validators.ValidatorException import ValidatorException
 from src.Logger.Log import  Log
 import sys
 import os
+from cryptography.fernet import InvalidToken
+from src.Security.Hash.Jwt import JWT
+import json
+import datetime
+from src.Utils.TokenExtract import TokenExtract
 
+#Done
 def register():
     body = request.json
     session = Repository().getSession()
@@ -51,9 +57,10 @@ def register():
         Log.error(message=str(ex),trace=ex.with_traceback(sys.exception().__traceback__))
         return {'data':{'error':AgendateException.getError(5000)}},500
 
-
+#Done
 def login():
     try:
+   
         data = request.json
         validator = StringValidator()
         validator.validate(data['user-email'])
@@ -62,20 +69,34 @@ def login():
         password = validator.data()
         userRepository = UserRepository()
         user  = userRepository.getByEmail(email)
-        print(user,email)
+
         if user is None:
             return {'data':AgendateException.getError(1000)},401
-
         hash = Hash()
 
-        if  hash.validate(password,user.password) is False:
+        if  hash.validate(user.password,password) == False:
             return {'data':AgendateException.getError(1000)},401
-        return {'data':Messages.getMessage(1000)} ,200
+        expiration = datetime.datetime.now()
+        payload = {
+            'id': user.id,
+            'user':user.email,
+            'iss': os.getenv('BASE_URL'),
+            'exp':expiration + datetime.timedelta(hours=8)
+            #'exp':expiration + datetime.timedelta(minutes=2)
+        }
+
+        token = JWT.serialize(payload)
+        return {'data':Messages.getMessage(1000),'token':str(token,encoding='utf-8')} ,200
 
     except ValidatorException as ex:
+        Log.error(message=f"{ex.__cause__}. {ex.__context__}", trace=ex.with_traceback(sys.exception().__traceback__))
         return {'data': AgendateException.getError(1001)}, 400
+    except InvalidToken as ex:
+        Log.error(message=f"{ex.__cause__}. {ex.__context__}", trace=ex.with_traceback(sys.exception().__traceback__))
+        return {'data':AgendateException.getError(5000)},500
+
     except Exception as ex:
-        Log.error(message=str(ex),trace=ex.with_traceback(sys.exception().__traceback__))
+        Log.error(message=f"{ex.__cause__}. {ex.__context__}", trace=ex.with_traceback(sys.exception().__traceback__))
         return {'data':AgendateException.getError(5000)},500
 
 
@@ -83,6 +104,21 @@ def logout():
     return {'data':None}
 
 def authorize():
-    data  = request.json
+    bearer = request.authorization
+    if bearer is None:
+        return {'data':'unauthorize'},401
 
-    return {'data':None}
+    try:
+        authorization = TokenExtract(bearer)
+        token= JWT.validate(authorization)
+
+        if token is None:
+           return {'data':'unauthorize'},401
+
+    except Exception as e:
+        Log.error(e.__cause__,e.__traceback__)
+        return {'data':'unauthorize'},401
+
+    return {'data':'authorize'},200
+  
+

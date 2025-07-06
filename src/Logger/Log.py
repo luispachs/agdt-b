@@ -16,6 +16,6 @@ class Log:
         appName = os.getenv('APP_ENV','Application')
         logFile = os.getenv('AGENDATE_DIR')+ '/src/Storage/Log/' +appName.replace(' ','_')+".log"
         logging.basicConfig(filename=logFile,format='%(asctime)s - %(name)s - %(levelname)s => %(message)s',level=logging.DEBUG,encoding="utf-8")
-        log.info(message + "\n" + str(trace))
+        log.info(str(message) + "\n" + str(trace))
 
 

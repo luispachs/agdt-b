@@ -3,13 +3,14 @@ import os
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
 class Hash:
     priv:str =None
     salt:bytes =None
     key:bytes =None
     def __init__(self):
         self.priv = os.getenv('APP_KEY')
-        self.salt =os.urandom(16)
+        self.salt =bytes(16)
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
             length=32,
@@ -20,8 +21,6 @@ class Hash:
         self.key = base64.urlsafe_b64encode(kdf.derive(temp))
 
 
-
-
     def encryt(self,data:str):
         f = Fernet(self.key)
         encrytedData = f.encrypt(bytes(data,encoding='utf-8'))
@@ -29,11 +28,13 @@ class Hash:
 
     def decrypt(self,data:str):
         f=Fernet(self.key)
-        return f.decrypt(data)
+        stringDecrypt = f.decrypt(bytes(data,encoding='utf-8'))
+        value =stringDecrypt.decode(encoding='utf-8')
+        return value
 
     def validate(self,strEncrypt:str,strDecryt):
         f=Fernet(self.key)
-        decrytedData = f.decrypt(strEncrypt)
+        decrytedData = self.decrypt(strEncrypt)
         if decrytedData == strDecryt:
             return True
         return False
