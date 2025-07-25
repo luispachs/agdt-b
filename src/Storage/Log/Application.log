@@ -42,3 +42,41 @@
 2025-07-05 20:06:55,847 - werkzeug - INFO =>  * Detected change in '/home/luis/Proyectos/agdt-b/src/Utils/TokenExtract.py', reloading
 2025-07-05 20:07:06,606 - werkzeug - INFO => 127.0.0.1 - - [05/Jul/2025 20:07:06] "[35m[1mPOST /api/v1/auth/authorize HTTP/1.1[0m" 500 -
 2025-07-05 20:08:04,060 - werkzeug - INFO =>  * Detected change in '/home/luis/Proyectos/agdt-b/src/Utils/TokenExtract.py', reloading
+2025-07-18 21:49:34,933 - root - ERROR => connection to server at "0.0.0.0", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+. connection to server at "0.0.0.0", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(psycopg2.OperationalError) connection to server at "0.0.0.0", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-18 21:49:34,933 - root - ERROR => connection to server at "0.0.0.0", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+. connection to server at "0.0.0.0", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(psycopg2.OperationalError) connection to server at "0.0.0.0", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-07-18 21:49:34,934 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:49:34] "[35m[1mPOST /api/v1/auth/login HTTP/1.1[0m" 500 -
+2025-07-18 21:49:34,934 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:49:34] "[35m[1mPOST /api/v1/auth/login HTTP/1.1[0m" 500 -
+2025-07-18 21:50:15,526 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:50:15] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-07-18 21:50:15,594 - root - ERROR => None. None
+No row was found when one was required
+2025-07-18 21:50:15,594 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:50:15] "[35m[1mPOST /api/v1/auth/login HTTP/1.1[0m" 500 -
+2025-07-18 21:50:36,754 - root - ERROR => None. None
+No row was found when one was required
+2025-07-18 21:50:36,754 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:50:36] "[35m[1mPOST /api/v1/auth/login HTTP/1.1[0m" 500 -
+2025-07-18 21:51:08,583 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:51:08] "[31m[1mGET /api/v1/auth/login HTTP/1.1[0m" 405 -
+2025-07-18 21:51:08,956 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:51:08] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-18 21:51:46,825 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:51:46] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-07-18 21:51:46,851 - root - ERROR => None. None
+No row was found when one was required
+2025-07-18 21:51:46,852 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:51:46] "[35m[1mPOST /api/v1/auth/login HTTP/1.1[0m" 500 -
+2025-07-18 21:54:16,478 - werkzeug - INFO =>  * Detected change in '/home/luis/Proyectos/agdt-b/src/Repository/UserRepository.py', reloading
+2025-07-18 21:54:19,156 - root - ERROR => None. None
+No row was found when one was required
+2025-07-18 21:54:19,156 - werkzeug - INFO => 127.0.0.1 - - [18/Jul/2025 21:54:19] "[35m[1mPOST /api/v1/auth/login HTTP/1.1[0m" 500 -
+2025-07-18 22:00:06,715 - werkzeug - INFO =>  * Detected change in '/home/luis/Proyectos/agdt-b/src/Repository/UserRepository.py', reloading
